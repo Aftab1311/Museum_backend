@@ -4,6 +4,7 @@ import express from "express";
 import cors from "cors";
 import artifactRoutes from "./routes/artifacts.js";
 import userRoutes from "./routes/auth.js";
+import chatbotRoutes from "./routes/chatbot.js";
 import connectDB from "./config/db.js";
 
 
@@ -31,17 +32,11 @@ app.get("/api/health", (req, res) => {
 
 app.use("/api/artifacts", artifactRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/chatbot", chatbotRoutes);
 
 // 404 handler (must be last)
 app.use((req, res) => {
   res.status(404).json({ message: "Route not found" });
-});
-
-// 404 Route Handler
-app.use((req, res) => {
-  res.status(404).json({
-    message: "Route not found",
-  });
 });
 
 // Start Server
